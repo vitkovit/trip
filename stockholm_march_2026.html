@@ -204,6 +204,22 @@
   footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 3rem 2rem; text-align: center; font-size: 0.8rem; }
   footer strong { color: white; }
 
+  /* ─── MAP SECTION ─── */
+  .map-section { padding: 4rem 0; border-bottom: 1px solid var(--border); background: var(--cream-dark); }
+  .map-embed-wrap { position: relative; margin-bottom: 1.5rem; border: 1px solid var(--border); overflow: hidden; }
+  .map-embed-wrap iframe { display: block; width: 100%; height: 360px; border: none; filter: sepia(10%) contrast(95%); }
+  .map-open-btn { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--blue); border: 1px solid rgba(43,74,107,0.25); padding: 0.5rem 1rem; background: var(--blue-light); transition: background 0.15s; margin-bottom: 2rem; }
+  .map-open-btn:hover { background: #D4E3F0; }
+  .map-open-btn::before { content: '↗'; }
+  .map-pins { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .map-pin { background: white; padding: 0.85rem 1rem; text-decoration: none; color: inherit; display: flex; gap: 0.75rem; align-items: flex-start; transition: background 0.15s; }
+  .map-pin:hover { background: var(--blue-light); }
+  .map-pin-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .map-pin-text {}
+  .map-pin-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); line-height: 1.3; }
+  .map-pin-detail { font-size: 0.74rem; color: var(--ink-soft); margin-top: 0.1rem; }
+  .map-pin-cat { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-top: 0.25rem; }
+
   /* ─── PRINT ─── */
   @media print {
     nav { display: none; }
@@ -239,6 +255,7 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#top">Stockholm '26</a>
+  <a href="#map">Map</a>
   <a href="#arriving">Arrival</a>
   <a href="#day1">Day 1</a>
   <a href="#day2">Day 2</a>
@@ -292,6 +309,205 @@
   </div>
 </div>
 </div>
+
+
+<!-- ═══════════════════════════════════════════════
+     MAP SECTION
+════════════════════════════════════════════════ -->
+<section class="map-section" id="map">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">↟</div>
+    <div class="section-header-text">
+      <div class="label">All key locations</div>
+      <h2>Map & locations</h2>
+    </div>
+  </div>
+
+  <!-- Embedded map centred on the apartment -->
+  <div class="map-embed-wrap">
+    <iframe
+      src="https://maps.google.com/maps?q=59.3393,18.0602&hl=en&z=14&output=embed"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Stockholm — apartment area">
+    </iframe>
+  </div>
+  <a class="map-open-btn" href="https://maps.google.com/maps?q=59.3393,18.0602" target="_blank" rel="noopener">Open full map in Google Maps</a>
+
+  <!-- Location grid -->
+  <div class="map-pins">
+
+    <!-- HOME -->
+    <a class="map-pin" href="https://maps.google.com/?q=Sveavägen,Vasastan,Stockholm,Sweden" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🏠</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Your apartment</div>
+        <div class="map-pin-detail">Sveavägen, Vasastan</div>
+        <div class="map-pin-cat">Base</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Rådmansgatan+metro+station+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🚇</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Rådmansgatan</div>
+        <div class="map-pin-detail">Metro · Red line · 3 min walk</div>
+        <div class="map-pin-cat">Transport</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Stockholm+Central+Station" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🚉</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">T-Centralen</div>
+        <div class="map-pin-detail">Central Station · Arlanda Express</div>
+        <div class="map-pin-cat">Transport</div>
+      </div>
+    </a>
+
+    <!-- SIGHTS -->
+    <a class="map-pin" href="https://maps.google.com/?q=Stockholms+stadsbibliotek" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🏛️</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Stadsbiblioteket</div>
+        <div class="map-pin-detail">Public Library · 5 min walk · Free</div>
+        <div class="map-pin-cat">Hidden gem</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Vasaparken+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🌿</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Vasaparken</div>
+        <div class="map-pin-detail">Local park · 3 min walk</div>
+        <div class="map-pin-cat">Hidden gem</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Vasa+Museum+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">⚓</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Vasa Museum</div>
+        <div class="map-pin-detail">Djurgården · Book in advance</div>
+        <div class="map-pin-cat">Must-see</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Fotografiska+Museum+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">📷</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Fotografiska</div>
+        <div class="map-pin-detail">Södermalm · Open until 11pm</div>
+        <div class="map-pin-cat">Must-see</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Gamla+Stan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🏰</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Gamla Stan</div>
+        <div class="map-pin-detail">Old Town · 20 min walk</div>
+        <div class="map-pin-cat">Must-see</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Monteliusvägen+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">👁️</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Monteliusvägen</div>
+        <div class="map-pin-detail">Södermalm cliff path · Best view</div>
+        <div class="map-pin-cat">Hidden gem</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Hagaparken+Solna+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🌲</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Hagaparken</div>
+        <div class="map-pin-detail">Solna border · Friend meetup</div>
+        <div class="map-pin-cat">Day 2</div>
+      </div>
+    </a>
+
+    <!-- COFFEE -->
+    <a class="map-pin" href="https://maps.google.com/?q=Drop+Coffee+Roasters+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">☕</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Drop Coffee</div>
+        <div class="map-pin-detail">Södermalm · Best coffee in Stockholm</div>
+        <div class="map-pin-cat">Coffee</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Café+Pascal+Norrtullsgatan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">☕</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Café Pascal</div>
+        <div class="map-pin-detail">Vasastan · 10 min walk · Local fave</div>
+        <div class="map-pin-cat">Coffee</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Johan+Nyström+Södermalm+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">☕</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Johan & Nyström</div>
+        <div class="map-pin-detail">Södermalm · Specialty pioneer</div>
+        <div class="map-pin-cat">Coffee</div>
+      </div>
+    </a>
+
+    <!-- FOOD -->
+    <a class="map-pin" href="https://maps.google.com/?q=Farang+Restaurant+Tulegatan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🍜</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Farang</div>
+        <div class="map-pin-detail">Tulegatan, Vasastan · Reserve now</div>
+        <div class="map-pin-cat">Dinner</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Lao+Wai+Luntmakargatan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🥢</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Lao Wai</div>
+        <div class="map-pin-detail">Vasastan · Vegan Chinese · Phone only</div>
+        <div class="map-pin-cat">Dinner</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Hermans+Restaurant+Fjällgatan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🥗</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Hermans</div>
+        <div class="map-pin-detail">Södermalm · Vegan buffet · 145 SEK</div>
+        <div class="map-pin-cat">Lunch / Dinner</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Café+Nizza+Södermalm+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🍝</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Café Nizza</div>
+        <div class="map-pin-detail">Södermalm · French-Italian bistro</div>
+        <div class="map-pin-cat">Dinner</div>
+      </div>
+    </a>
+
+    <a class="map-pin" href="https://maps.google.com/?q=Bacchi+Syre+Gamla+Stan+Stockholm" target="_blank" rel="noopener">
+      <div class="map-pin-icon">🌿</div>
+      <div class="map-pin-text">
+        <div class="map-pin-name">Bacchi Syre</div>
+        <div class="map-pin-detail">Gamla Stan · Plant-based · Art space</div>
+        <div class="map-pin-cat">Dinner</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+</section>
 
 
 <!-- ═══════════════════════════════════════════════
