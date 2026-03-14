@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trips</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E0E0E;
+    --surface: #161616;
+    --surface-2: #1E1E1E;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.16);
+    --text: #E8E4DC;
+    --text-mid: #A09890;
+    --text-soft: #6A6460;
+    --gold: #C8973A;
+    --gold-dim: rgba(200,151,58,0.15);
+    --gold-glow: rgba(200,151,58,0.06);
+    --green: #4A8C6A;
+    --green-dim: rgba(74,140,106,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    cursor: default;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  header { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  .header-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+  .logo-block {}
+  .logo-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 0.6rem; }
+  .logo { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 400; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
+  .logo em { font-style: italic; color: var(--gold); }
+  .header-meta { text-align: right; }
+  .header-meta p { font-size: 0.78rem; color: var(--text-soft); line-height: 1.8; }
+  .header-meta strong { color: var(--text-mid); font-weight: 400; }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 2.5rem 0 1.25rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .section-label span {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-soft);
+    white-space: nowrap;
+  }
+
+  /* ── TRIP CARD ── */
+  .trip-card {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 0;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1px;
+  }
+  .trip-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s ease;
+  }
+  .trip-card:hover { border-color: var(--border-hover); background: var(--surface-2); transform: translateX(3px); }
+  .trip-card:hover::before { transform: scaleY(1); }
+
+  .trip-index {
+    padding: 1.5rem 1rem;
+    display: flex; align-items: flex-start; justify-content: center;
+    border-right: 1px solid var(--border);
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--text-soft); font-weight: 300;
+    padding-top: 1.6rem;
+  }
+  .trip-body { padding: 1.5rem 1.5rem; }
+  .trip-date {
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .trip-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 0.4rem; line-height: 1.2; }
+  .trip-sub { font-size: 0.82rem; color: var(--text-mid); margin-bottom: 0.75rem; }
+  .trip-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border: 1px solid var(--border); color: var(--text-soft); background: transparent; }
+  .tag.active { border-color: rgba(200,151,58,0.3); color: var(--gold); background: var(--gold-dim); }
+  .trip-arrow {
+    padding: 1.5rem 1.5rem 1.5rem 0.5rem;
+    display: flex; align-items: center;
+    font-size: 1.2rem; color: var(--text-soft);
+    transition: color 0.2s, transform 0.2s;
+  }
+  .trip-card:hover .trip-arrow { color: var(--gold); transform: translateX(4px); }
+
+  /* ── FUTURE CARDS ── */
+  .trip-card.future {
+    opacity: 0.35; pointer-events: none; cursor: default;
+    background: transparent;
+  }
+  .trip-card.future::before { display: none; }
+  .trip-card.future .trip-title { font-style: italic; }
+
+  /* ── UPCOMING PLACEHOLDER ── */
+  .add-trip {
+    border: 1px dashed var(--border);
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    color: var(--text-soft);
+    margin-top: 1px;
+  }
+  .add-trip .add-icon { font-size: 1.1rem; opacity: 0.4; }
+  .add-trip p { font-size: 0.82rem; line-height: 1.5; }
+  .add-trip code { font-family: 'DM Mono', monospace; font-size: 0.75rem; background: var(--surface-2); padding: 0.1rem 0.4rem; border: 1px solid var(--border); color: var(--text-mid); }
+
+  /* ── STATS BAR ── */
+  .stats { display: flex; gap: 0; border: 1px solid var(--border); background: var(--surface); margin: 2.5rem 0 0; overflow: hidden; }
+  .stat { flex: 1; padding: 1rem 1.25rem; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; color: var(--text); line-height: 1; margin-bottom: 0.2rem; }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.75rem; color: var(--text-soft); }
+  .footer-note { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-soft); letter-spacing: 0.08em; }
+
+  /* ── HOW TO ADD TRIPS (collapsible) ── */
+  details { border: 1px solid var(--border); background: var(--surface); margin-top: 2.5rem; }
+  summary {
+    padding: 1rem 1.25rem; cursor: pointer;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mid);
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 1rem; color: var(--text-soft); transition: transform 0.2s; }
+  details[open] summary::after { content: '−'; }
+  .details-body { padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--border); }
+  .details-body p { font-size: 0.83rem; color: var(--text-mid); margin-top: 1rem; line-height: 1.7; }
+  .details-body code { font-family: 'DM Mono', monospace; font-size: 0.78rem; background: var(--bg); padding: 0.1rem 0.45rem; border: 1px solid var(--border); color: var(--gold); }
+  .dir-tree { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-mid); background: var(--bg); border: 1px solid var(--border); padding: 1rem 1.25rem; margin-top: 0.75rem; line-height: 2; }
+  .dir-tree .dir-gold { color: var(--gold); }
+  .dir-tree .dir-soft { color: var(--text-soft); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .trip-card, .stats, details { animation: fadeIn 0.5s ease both; }
+  .trip-card:nth-child(1) { animation-delay: 0.05s; }
+  .trip-card:nth-child(2) { animation-delay: 0.12s; }
+  .trip-card:nth-child(3) { animation-delay: 0.19s; }
+
+  @media (max-width: 520px) {
+    .trip-card { grid-template-columns: 40px 1fr auto; }
+    .trip-index { padding: 1.25rem 0.75rem; }
+    .trip-body { padding: 1.25rem 1rem; }
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-meta { text-align: left; }
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-block">
+        <div class="logo-eyebrow">Personal travel archive</div>
+        <div class="logo">Trip<em>s</em></div>
+      </div>
+      <div class="header-meta">
+        <p><strong>github.com/[you]/trips</strong></p>
+        <p>Hosted on GitHub Pages</p>
+        <p>Updated March 2026</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Trips logged</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">3</div>
+      <div class="stat-label">Days planned</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">1</div>
+      <div class="stat-label">Country</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">2026</div>
+      <div class="stat-label">Started</div>
+    </div>
+  </div>
+
+  <!-- TRIPS LIST -->
+  <div class="section-label"><span>Trips</span></div>
+
+  <!-- STOCKHOLM — ACTIVE -->
+  <a class="trip-card" href="stockholm-march-2026/index.html">
+    <div class="trip-index">01</div>
+    <div class="trip-body">
+      <div class="trip-date">Mar 21 – 24, 2026</div>
+      <div class="trip-title">Stockholm, Sweden</div>
+      <div class="trip-sub">First visit · 2 travellers · Stay Inn Apt, Sveavägen · Ryanair FR4636/4626</div>
+      <div class="trip-tags">
+        <span class="tag active">Published</span>
+        <span class="tag">Vasastan</span>
+        <span class="tag">Vegan-friendly</span>
+        <span class="tag">Specialty coffee</span>
+        <span class="tag">Museums</span>
+      </div>
+    </div>
+    <div class="trip-arrow">→</div>
+  </a>
+
+  <!-- PLACEHOLDER 2 -->
+  <div class="trip-card future">
+    <div class="trip-index">02</div>
+    <div class="trip-body">
+      <div class="trip-date">— · —</div>
+      <div class="trip-title">Next destination</div>
+      <div class="trip-sub">Add your next trip plan here</div>
+      <div class="trip-tags"><span class="tag">Upcoming</span></div>
+    </div>
+    <div class="trip-arrow">→</div>
+  </div>
+
+  <!-- PLACEHOLDER 3 -->
+  <div class="trip-card future">
+    <div class="trip-index">03</div>
+    <div class="trip-body">
+      <div class="trip-date">— · —</div>
+      <div class="trip-title">Next destination</div>
+      <div class="trip-sub">Add your next trip plan here</div>
+      <div class="trip-tags"><span class="tag">Upcoming</span></div>
+    </div>
+    <div class="trip-arrow">→</div>
+  </div>
+
+  <!-- ADD NEW -->
+  <div class="add-trip">
+    <div class="add-icon">+</div>
+    <p>To add a new trip, create a folder in this repo and add an <code>index.html</code> — then link it above. See instructions below.</p>
+  </div>
+
+  <!-- HOW TO ADD TRIPS -->
+  <details>
+    <summary>How to add future trips</summary>
+    <div class="details-body">
+      <p>This repo is structured for GitHub Pages. Each trip lives in its own folder with an <code>index.html</code>. The root <code>index.html</code> is this page.</p>
+      <div class="dir-tree">
+<span class="dir-gold">trips/</span>
+├── <span class="dir-gold">index.html</span>          <span class="dir-soft">← this page</span>
+├── <span class="dir-gold">stockholm-march-2026/</span>
+│   └── <span class="dir-gold">index.html</span>      <span class="dir-soft">← Stockholm trip plan</span>
+├── <span class="dir-soft">lisbon-june-2026/</span>     <span class="dir-soft">← your next trip</span>
+│   └── <span class="dir-soft">index.html</span>
+└── <span class="dir-soft">tokyo-2027/</span>
+    └── <span class="dir-soft">index.html</span>
+      </div>
+      <p>To publish: push to the <code>main</code> branch. GitHub Pages will serve this at <code>[username].github.io/trips/</code>. Enable Pages in Settings → Pages → Source: main branch / root.</p>
+      <p>To add a trip to this index, copy one of the <code>trip-card</code> blocks above, remove the <code>future</code> class, update the href, date, title, and tags, and increment the stats counters.</p>
+    </div>
+  </details>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Personal travel archive — github.com/[you]/trips</p>
+    <p class="footer-note">Built with HTML · No frameworks · GitHub Pages</p>
+  </footer>
+
+</div>
+</body>
+</html>

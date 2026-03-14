@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stockholm — March 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F4EFE4;
+    --cream-dark: #EAE3D2;
+    --ink: #1C1C1C;
+    --ink-mid: #3D3730;
+    --ink-soft: #6B6358;
+    --gold: #B8882A;
+    --gold-light: #D4A84B;
+    --blue: #2B4A6B;
+    --blue-light: #E8EFF7;
+    --green: #2E5C40;
+    --green-light: #E8F2EC;
+    --red: #8B2A2A;
+    --red-light: #F5EAEA;
+    --amber-light: #FBF3E3;
+    --border: rgba(28,28,28,0.12);
+    --shadow: 0 2px 20px rgba(28,28,28,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1, h2, h3, h4 { font-family: 'Cormorant', serif; font-weight: 400; line-height: 1.2; }
+  h1 { font-size: clamp(3rem, 8vw, 6rem); letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  h3 { font-size: 1.4rem; }
+  h4 { font-size: 1.1rem; }
+
+  p { color: var(--ink-mid); }
+  .label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244,239,228,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; scrollbar-width: none;
+    height: 52px;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    text-decoration: none; color: var(--ink-soft);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0 1.2rem; height: 52px; display: flex; align-items: center;
+    border-bottom: 2px solid transparent; white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+  nav .nav-logo { font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); margin-right: 1.5rem; white-space: nowrap; border: none !important; }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .container-wide { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 5rem 0 4rem;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: 'STOCKHOLM';
+    position: absolute; top: -1rem; right: -1rem;
+    font-family: 'Cormorant', serif; font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 300; color: rgba(28,28,28,0.04);
+    pointer-events: none; user-select: none; line-height: 1;
+    white-space: nowrap;
+  }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .hero-eyebrow span { display: inline-block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-title { margin-bottom: 0.5rem; }
+  .hero-subtitle { font-family: 'Cormorant', serif; font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 300; font-style: italic; color: var(--ink-soft); margin-bottom: 3rem; }
+  .hero-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .hero-card { background: var(--cream); padding: 1.25rem 1.5rem; }
+  .hero-card .label { margin-bottom: 0.4rem; }
+  .hero-card .value { font-family: 'Cormorant', serif; font-size: 1.3rem; font-weight: 500; line-height: 1.3; }
+  .hero-card .sub { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.2rem; }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-number { font-family: 'Cormorant', serif; font-size: 4rem; font-weight: 300; color: rgba(28,28,28,0.1); line-height: 1; flex-shrink: 0; }
+  .section-header-text .label { margin-bottom: 0.3rem; }
+
+  /* ─── BADGES ─── */
+  .badge { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 2px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.05em; }
+  .badge-gold { background: var(--amber-light); color: var(--gold); border: 1px solid rgba(184,136,42,0.2); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); border: 1px solid rgba(43,74,107,0.15); }
+  .badge-green { background: var(--green-light); color: var(--green); border: 1px solid rgba(46,92,64,0.15); }
+  .badge-red { background: var(--red-light); color: var(--red); border: 1px solid rgba(139,42,42,0.15); }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+
+  /* ─── CARDS ─── */
+  .card { background: white; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1rem; }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ─── TRANSPORT BOX ─── */
+  .transport-option { border: 1px solid var(--border); margin-bottom: 1.2rem; overflow: hidden; }
+  .transport-header { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.25rem; background: white; border-bottom: 1px solid var(--border); }
+  .transport-header h4 { font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600; }
+  .transport-body { padding: 1.1rem 1.25rem; }
+  .transport-steps { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .transport-steps li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.88rem; color: var(--ink-mid); }
+  .step-circle { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .transport-meta { font-size: 0.78rem; color: var(--ink-soft); padding-top: 0.8rem; margin-top: 0.8rem; border-top: 1px solid var(--border); }
+  .recommended { border-color: var(--green); }
+  .recommended .transport-header { background: var(--green-light); border-bottom-color: rgba(46,92,64,0.2); }
+  .recommended-label { font-size: 0.7rem; font-weight: 600; color: var(--green); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; }
+  .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 0; margin-bottom: 0; }
+  .timeline-time-col { padding-top: 0.2rem; text-align: right; padding-right: 2rem; position: relative; }
+  .timeline-time-col::after { content: ''; position: absolute; right: -1px; top: 8px; bottom: -8px; width: 1px; background: var(--border); }
+  .timeline-item:last-child .timeline-time-col::after { display: none; }
+  .timeline-dot { position: absolute; right: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--cream); border: 2px solid var(--ink-soft); }
+  .timeline-dot.accent { border-color: var(--gold); background: var(--gold); }
+  .timeline-time { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+  .timeline-content { padding: 0 0 2.5rem 2rem; }
+  .timeline-content h4 { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--ink); }
+  .timeline-content p { font-size: 0.87rem; line-height: 1.6; color: var(--ink-soft); }
+  .timeline-content .badge-row { margin-top: 0.5rem; }
+
+  /* ─── DEPARTURE BOX ─── */
+  .departure-critical { background: var(--red-light); border: 1px solid rgba(139,42,42,0.2); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+  .departure-critical .label { color: var(--red); margin-bottom: 0.4rem; }
+  .departure-critical p { color: var(--red); font-size: 0.88rem; }
+
+  /* ─── ALARM BLOCK ─── */
+  .alarm-sequence { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); overflow: hidden; }
+  .alarm-row { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); background: white; }
+  .alarm-row:last-child { border-bottom: none; }
+  .alarm-row.highlight { background: var(--green-light); }
+  .alarm-row.warn { background: var(--red-light); }
+  .alarm-time { font-family: 'Cormorant', serif; font-size: 1.6rem; font-weight: 500; min-width: 70px; color: var(--ink); }
+  .alarm-text { font-size: 0.88rem; color: var(--ink-mid); flex: 1; }
+  .alarm-text strong { font-weight: 600; color: var(--ink); }
+
+  /* ─── FOOD GRID ─── */
+  .food-card { border: 1px solid var(--border); padding: 1.25rem; background: white; }
+  .food-card .food-name { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+  .food-card .food-location { font-size: 0.78rem; color: var(--ink-soft); margin: 0.2rem 0 0.6rem; }
+  .food-card .food-desc { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.55; }
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .food-grid .food-card { border: none; border-radius: 0; }
+  .food-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: start; }
+
+  /* ─── GEM ITEMS ─── */
+  .gem-item { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .gem-item:last-child { border-bottom: none; }
+  .gem-number { font-family: 'Cormorant', serif; font-size: 3rem; font-weight: 300; color: rgba(28,28,28,0.1); line-height: 1; flex-shrink: 0; width: 48px; }
+  .gem-content h4 { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .gem-content .gem-where { font-size: 0.78rem; color: var(--gold); font-weight: 500; margin-bottom: 0.4rem; }
+  .gem-content p { font-size: 0.87rem; color: var(--ink-mid); line-height: 1.6; }
+
+  /* ─── TIPS TABLE ─── */
+  .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .tip-item { display: flex; gap: 1rem; }
+  .tip-item .tip-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .tip-item h4 { font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .tip-item p { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ─── DIVIDER ─── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .gold-line { width: 40px; height: 2px; background: var(--gold); margin: 1rem 0 1.5rem; }
+
+  /* ─── INLINE INFO ─── */
+  .info-box { background: var(--blue-light); border: 1px solid rgba(43,74,107,0.15); padding: 1rem 1.25rem; font-size: 0.87rem; color: var(--blue); margin-bottom: 1.2rem; }
+  .warn-box { background: var(--amber-light); border: 1px solid rgba(184,136,42,0.2); padding: 1rem 1.25rem; font-size: 0.87rem; color: var(--gold); margin-bottom: 1.2rem; }
+
+  /* ─── FLIGHT DISPLAY ─── */
+  .flight-strip { border: 1px solid var(--border); padding: 1.25rem 1.5rem; background: white; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+  .flight-time { font-family: 'Cormorant', serif; font-size: 2rem; font-weight: 500; }
+  .flight-city { font-size: 0.78rem; color: var(--ink-soft); }
+  .flight-line { flex: 1; min-width: 80px; text-align: center; }
+  .flight-line-bar { height: 1px; background: var(--border); position: relative; margin: 0.4rem 0; }
+  .flight-line-bar::after { content: '›'; position: absolute; right: -4px; top: -9px; font-size: 1rem; color: var(--ink-soft); }
+  .flight-meta { font-size: 0.75rem; color: var(--ink-soft); }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 3rem 2rem; text-align: center; font-size: 0.8rem; }
+  footer strong { color: white; }
+
+  /* ─── PRINT ─── */
+  @media print {
+    nav { display: none; }
+    section { page-break-inside: avoid; }
+    .hero::before { display: none; }
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .container { padding: 0 1.25rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 64px 1fr; }
+    .food-card.featured { grid-template-columns: 1fr; }
+    .hero-cards { grid-template-columns: 1fr 1fr; }
+    .alarm-time { font-size: 1.3rem; min-width: 56px; }
+    .gem-number { display: none; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero .container > * { animation: fadeUp 0.6s ease both; }
+  .hero .container > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero .container > *:nth-child(3) { animation-delay: 0.2s; }
+  .hero .container > *:nth-child(4) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#top">Stockholm '26</a>
+  <a href="#arriving">Arrival</a>
+  <a href="#day1">Day 1</a>
+  <a href="#day2">Day 2</a>
+  <a href="#day3">Day 3</a>
+  <a href="#departing">Departure</a>
+  <a href="#food">Food</a>
+  <a href="#gems">Hidden Gems</a>
+  <a href="#tips">Tips</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+<div class="container">
+  <div class="hero-eyebrow">
+    <span></span>
+    <span class="label">Trip plan — 2 travellers</span>
+  </div>
+  <h1 class="hero-title">Stockholm</h1>
+  <p class="hero-subtitle">March 21 – 24, 2026 &nbsp;·&nbsp; A relaxed first visit</p>
+  <div class="hero-cards">
+    <div class="hero-card">
+      <div class="label">Outbound flight</div>
+      <div class="value">FR4636</div>
+      <div class="sub">KRK 09:25 → ARN 11:20 · Sat 21</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Return flight</div>
+      <div class="value">FR4626</div>
+      <div class="sub">ARN 06:05 → KRK 08:00 · Tue 24</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Base</div>
+      <div class="value">Stay Inn Apt.</div>
+      <div class="sub">Sveavägen, Vasastan</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Nearest metro</div>
+      <div class="value">Rådmansgatan</div>
+      <div class="sub">Red line · 3 min walk · 2 stops to T-Centralen</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Weather</div>
+      <div class="value">2 – 3°C</div>
+      <div class="sub">Cold, some sun. Pack layers + waterproof shoes.</div>
+    </div>
+    <div class="hero-card">
+      <div class="label">SL 72h pass</div>
+      <div class="value">~330 SEK</div>
+      <div class="sub">Covers all metro, bus & tram. Buy at arrival.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 1 — ARRIVING
+════════════════════════════════════════════════ -->
+<section id="arriving">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-header-text">
+      <div class="label">Saturday 21 March · 11:20 arrival</div>
+      <h2>Getting from Arlanda to your apartment</h2>
+    </div>
+  </div>
+
+  <!-- Flights -->
+  <div class="flight-strip">
+    <div>
+      <div class="flight-time">09:25</div>
+      <div class="flight-city">Kraków KRK</div>
+    </div>
+    <div class="flight-line">
+      <div class="flight-meta">FR4636 · 1h 55m</div>
+      <div class="flight-line-bar"></div>
+      <div class="flight-meta">Ryanair</div>
+    </div>
+    <div style="text-align:right">
+      <div class="flight-time">11:20</div>
+      <div class="flight-city">Stockholm Arlanda ARN</div>
+    </div>
+    <div class="badge-row"><span class="badge badge-gold">Saturday 21 March</span></div>
+  </div>
+
+  <div style="height:2rem"></div>
+  <h3 style="margin-bottom:1.5rem; font-size:1.1rem; font-family:'Jost',sans-serif; font-weight:600; letter-spacing:0.02em;">Transport options — Arlanda → Sveavägen</h3>
+
+  <!-- Option A -->
+  <div class="transport-option recommended">
+    <div class="transport-header">
+      <h4>Option A — Arlanda Express + Red line metro</h4>
+      <span class="recommended-label">Recommended</span>
+    </div>
+    <div class="transport-body">
+      <ul class="transport-steps">
+        <li><div class="step-circle">1</div><div>Follow signs underground to <strong>Arlanda Express</strong>. Buy ticket at machine — ~340 SEK/person (or pre-book online cheaper for a timed departure). Platform is directly below the terminal.</div></li>
+        <li><div class="step-circle">2</div><div>18-minute non-stop ride to <strong>Stockholm Central Station (T-Centralen)</strong>.</div></li>
+        <li><div class="step-circle">3</div><div>At T-Centralen, take the <strong>Red line metro northbound</strong> (towards Danderyds sjukhus) — exactly 2 stops to <strong>Rådmansgatan</strong>.</div></li>
+        <li><div class="step-circle">4</div><div>Walk 3 minutes north on <strong>Sveavägen</strong> to the apartment. Ring bell / follow check-in instructions.</div></li>
+      </ul>
+      <div class="transport-meta">Total time: ~45 min from landing · Cost: ~680 SEK for 2 (Arlanda Express) + metro tickets (or included in SL 72h pass). Buy the SL 72h pass at T-Centralen — 330 SEK/person, covers all transport for the whole trip.</div>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="transport-option">
+    <div class="transport-header">
+      <h4>Option B — SL Commuter train (pendeltåg) + metro — cheaper</h4>
+    </div>
+    <div class="transport-body">
+      <ul class="transport-steps">
+        <li><div class="step-circle">1</div><div>Take the <strong>SL commuter train (pendeltåg)</strong> from Arlanda to T-Centralen — ~40 min. Use SL app or ticket machines. ~175 SEK/person. If you already have an SL pass, this is included.</div></li>
+        <li><div class="step-circle">2</div><div>At T-Centralen, Red line 2 stops north to <strong>Rådmansgatan</strong>.</div></li>
+        <li><div class="step-circle">3</div><div>3 min walk to apartment.</div></li>
+      </ul>
+      <div class="transport-meta">Total time: ~60 min · Cost: ~350 SEK for two. Best value if buying the SL 72h pass anyway.</div>
+    </div>
+  </div>
+
+  <!-- if apartment not ready -->
+  <div class="info-box" style="margin-top:1.5rem">
+    <strong>If the apartment isn't ready yet</strong> (check-in usually from 3pm) — leave bags with the host or at luggage lockers in T-Centralen, then walk 5 min from the apartment to <strong>Stadsbiblioteket</strong> (the famous round library — free, unmissable) and nearby <strong>Vasaparken</strong> to pass the time. Grab lunch at a café on Sveavägen — there are several within 2 min walk.
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 2 — DAY 1
+════════════════════════════════════════════════ -->
+<section id="day1">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-header-text">
+      <div class="label">Saturday 21 March · 2°C / -2°C · ❄ Cold & cloudy</div>
+      <h2>Arrival day — settle in, explore gently</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">12:00 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Arrive at apartment, drop bags</h4>
+        <p>Check in or leave bags. Walk 5 min to Vasaparken — your neighbourhood park — to get a feel for Vasastan. Quiet, local, no tourists.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">1:00 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Stadsbiblioteket — hidden architectural gem</h4>
+        <p>5 min walk from your apartment on Sveavägen. Gunnar Asplund's 1928 masterpiece — a perfect cylinder rising from a cubic base, the rotunda reading room lined floor-to-ceiling with thousands of books. Free entry. One of the great architectural spaces in Scandinavia. Almost no tourists visit.</p>
+        <div class="badge-row"><span class="badge badge-green">Free entry</span><span class="badge badge-blue">5 min walk</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">2:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Walk Sveavägen south → Gamla Stan</h4>
+        <p>Walk 15 min south down Sveavägen — one of Stockholm's grand boulevards — to Sergels Torg at the city's heart. Continue to <strong>Gamla Stan</strong> (Old Town): cobblestones, colourful Stortorget square, Stockholm Cathedral, Royal Palace (free to admire outside). The walk from apartment to Gamla Stan is entirely on foot across water — each bridge gives a different city view.</p>
+        <div class="badge-row"><span class="badge badge-green">Free</span><span class="badge badge-blue">20 min walk</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">4:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>First Swedish fika — Johan & Nyström, Södermalm</h4>
+        <p>Cross the bridge from Gamla Stan into Södermalm. Johan & Nyström on Swedenborgsgatan: one of the original Scandinavian specialty coffee pioneers, walls stacked floor-to-ceiling with coffee and tea. Order a filter coffee and a cardamom bun. This is your first proper Swedish fika — take your time, sit down, don't rush. It's a ritual.</p>
+        <div class="badge-row"><span class="badge badge-gold">Specialty coffee</span><span class="badge badge-blue">Södermalm</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">7:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Dinner — Café Nizza or Hermans</h4>
+        <p><strong>Café Nizza</strong> (Södermalm): relaxed French-Italian neighbourhood bistro, great cacio e pepe, good vegetarian options, very local crowd. OR <strong>Hermans</strong> (nearby, Södermalm): beloved all-vegan buffet with a stunning terrace view over Stockholm — 145 SEK per person, everything included. A local institution since the 1990s. Take the metro home: Mariatorget → change at T-Centralen → Rådmansgatan.</p>
+        <div class="badge-row"><span class="badge badge-green">Vegan option at Hermans</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3 — DAY 2
+════════════════════════════════════════════════ -->
+<section id="day2">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-header-text">
+      <div class="label">Sunday 22 March · 3°C / -1°C · 🌤 Possible sun spells</div>
+      <h2>Museums, Djurgården, friend meetup</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">8:30 AM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Breakfast at home — use the kitchen</h4>
+        <p>Apartment advantage: grab supplies from the ICA supermarket on Sveavägen (2 min walk). Make a Swedish-style breakfast: skyr, rye bread, cheese, coffee. Saves money for a proper dinner tonight.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">10:00 AM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Vasa Museum — the must-see of Stockholm</h4>
+        <p>Metro Rådmansgatan → T-Centralen, then Tram 7 from Norrmalmstorg → Nordiska Museet/Vasamuseet stop. The world's only near-perfectly preserved 17th-century warship — sank on its maiden voyage in 1628, raised in 1961 and painstakingly restored. The scale and detail is extraordinary. <strong>Book tickets online in advance</strong> — especially for Sunday. Allow 90–120 minutes.</p>
+        <div class="badge-row"><span class="badge badge-red">Book tickets in advance</span><span class="badge badge-blue">Tram 7 from T-Centralen</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">12:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>ABBA Museum or Skansen — both on Djurgården</h4>
+        <p>Stay on the island. <strong>ABBA The Museum</strong> is playful and genuinely interactive — dress like ABBA, record your own vocals. Even non-fans find it fun. OR <strong>Skansen</strong>: the world's first open-air museum (1891), with 150 historical buildings transported from across Sweden, plus Nordic animals (wolves, lynx, bears, moose). Beautiful in winter.</p>
+        <div class="badge-row"><span class="badge badge-blue">Both on Djurgården</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">2:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Meet your friend — Hagaparken</h4>
+        <p>Hagaparken is a beautiful royal park sitting exactly on the Stockholm/Solna border — perfect midpoint. <strong>How to get there:</strong> Metro Rådmansgatan → Odenplan (1 stop), then Bus 515 a few stops to Hagaparken. About 15 min total. Your friend can walk or take a short bus from Solna. Walk together through the park, visit the Copper Tents and Gustav III's Pavilion. Then bring them back to Vasastan — Farang and Lao Wai are both walking distance from your apartment.</p>
+        <div class="badge-row"><span class="badge badge-green">1 metro stop + bus</span><span class="badge badge-blue">Perfect friend meetup</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">7:00 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Dinner — Farang (book in advance!)</h4>
+        <p><strong>Farang</strong>, Tulegatan 7, Vasastan — 15 min walk from apartment. One of Stockholm's finest restaurants: SE Asian tasting menus with full vegetarian option, exquisitely executed. Open to the public and friends from Solna. <strong>Reserve now</strong> at farang.se — fills up quickly, especially on Sundays. OR <strong>Lao Wai</strong> (10 min walk): all-vegan Chinese family-style dining, beloved institution. Reserve by phone: +46 8 673 78 00.</p>
+        <div class="badge-row"><span class="badge badge-red">Reserve in advance</span><span class="badge badge-green">Vegetarian menu available</span><span class="badge badge-blue">Walk from apartment</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 4 — DAY 3
+════════════════════════════════════════════════ -->
+<section id="day3">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-header-text">
+      <div class="label">Monday 23 March · 3°C / -2°C · 🌥 Overcast</div>
+      <h2>Last full day — coffee, views, art</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="warn-box">
+    <strong>⚠ Tonight matters:</strong> Your flight is at 06:05 tomorrow morning. Be in bed by 10pm. Book your taxi tonight (see Departure section).
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">9:30 AM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Drop Coffee — best specialty coffee in Stockholm</h4>
+        <p>Metro Rådmansgatan → Mariatorget (south, 3 stops). Drop Coffee on Wollmar Yxkullsgatan: award-winning own-roasted beans, run by Joanna Alm (2× Swedish Roasting Champion). Cozy rooms — some laptop-free, great for conversation. Order a Kalita pour-over and a cardamom bun. This is the fika highlight of the trip. Also pick up a box of beans to take home — their rectangular packaging is iconic.</p>
+        <div class="badge-row"><span class="badge badge-gold">Best coffee in Stockholm</span><span class="badge badge-blue">Södermalm</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">11:00 AM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Monteliusvägen — best free view in Stockholm</h4>
+        <p>Walk 10 min from Drop Coffee to this cliff-edge path running along the top of Södermalm. The panorama of City Hall, Old Town, Riddarfjärden and the surrounding islands is the finest view in the city. Locals walk their dogs here. No tour buses. Walk the full path — about 20–30 min end to end. Bring your camera.</p>
+        <div class="badge-row"><span class="badge badge-green">Free</span><span class="badge badge-blue">10 min walk from Drop Coffee</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">12:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>SoFo + lunch at Hermans</h4>
+        <p>SoFo (South of Folkungagatan) — Södermalm's hippest strip of design boutiques, vintage shops, and independent cafés. Browse freely. Then lunch at <strong>Hermans</strong> (Fjällgatan 23B): all-you-can-eat vegan buffet with one of the best views in the city, 145 SEK per person including coffee. The terrace overlooks the Old Town and the water. One of the best value meals in Stockholm.</p>
+        <div class="badge-row"><span class="badge badge-green">100% vegan buffet · 145 SEK</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">2:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>T-bana art crawl — world's longest art gallery</h4>
+        <p>The Stockholm metro is covered by your SL pass and doubles as an extraordinary public art space: 90+ stations decorated by 150+ artists. Take the Blue line from T-Centralen: <strong>Kungsträdgården</strong> (looks like an excavated cave — columns, frescoes, embedded fossils), <strong>Rådhuset</strong> (exposed red rock face, like being inside a cliff), <strong>Stadion</strong> (vaulted rainbow mosaic). Then come back via the red line through Odenplan. Genuinely unlike anything else in Europe. Covered by your SL pass.</p>
+        <div class="badge-row"><span class="badge badge-green">Free with SL pass</span><span class="badge badge-gold">Hidden gem</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot"></div>
+        <div class="timeline-time">5:00 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Fotografiska — open until 11pm</h4>
+        <p>World-class contemporary photography museum on Södermalm waterfront (Stadsgårdshamnen 22). Rotating exhibitions are consistently outstanding — more moving than most fine art museums. The rooftop café has some of Stockholm's best views looking out over Djurgården. Evening visits are magical — city lights reflected on the water. Metro: Slussen from T-Centralen, then 10 min walk.</p>
+        <div class="badge-row"><span class="badge badge-blue">Open until 11pm</span></div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-time-col">
+        <div class="timeline-dot accent"></div>
+        <div class="timeline-time">7:30 PM</div>
+      </div>
+      <div class="timeline-content">
+        <h4>Final dinner — Lao Wai or Bacchi Syre</h4>
+        <p><strong>Lao Wai</strong> (Luntmakargatan 74, Vasastan — 10 min walk from apartment): all-vegan Sichuan and Taiwanese family-style dishes. The menu changes based on what's fresh. A 30-year Stockholm institution. Reserve by phone. OR <strong>Bacchi Syre</strong> (Gamla Stan): three-floor plant-based space with art gallery, bars, and restaurant — a very special setting for a final meal. Home by 9pm. <strong>Set two alarms for 04:15am.</strong></p>
+        <div class="badge-row"><span class="badge badge-green">100% vegan</span><span class="badge badge-blue">Near apartment</span><span class="badge badge-red">Early morning tomorrow!</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 5 — DEPARTING
+════════════════════════════════════════════════ -->
+<section id="departing">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-header-text">
+      <div class="label">Tuesday 24 March · Flight FR4626 · 06:05</div>
+      <h2>Getting back to Arlanda</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <!-- Return flight -->
+  <div class="flight-strip">
+    <div>
+      <div class="flight-time">06:05</div>
+      <div class="flight-city">Stockholm Arlanda ARN</div>
+    </div>
+    <div class="flight-line">
+      <div class="flight-meta">FR4626 · 1h 55m</div>
+      <div class="flight-line-bar"></div>
+      <div class="flight-meta">Ryanair</div>
+    </div>
+    <div style="text-align:right">
+      <div class="flight-time">08:00</div>
+      <div class="flight-city">Kraków KRK</div>
+    </div>
+    <div class="badge-row"><span class="badge badge-red">Tuesday 24 March · Very early departure</span></div>
+  </div>
+
+  <div style="height:1.5rem"></div>
+  <div class="departure-critical">
+    <div class="label">Critical timing</div>
+    <p>Ryanair check-in closes ~05:30am. You must be at Arlanda security by 05:15 at the latest. The metro does NOT run at 4am — you need a taxi or pre-booked Uber. Plan this on Sunday evening.</p>
+  </div>
+
+  <!-- Recommended option -->
+  <h3 style="font-size:1.05rem;font-family:'Jost',sans-serif;font-weight:600;margin-bottom:1rem;">✅ Recommended — Pre-booked taxi direct to Arlanda</h3>
+  <div class="alarm-sequence">
+    <div class="alarm-row">
+      <div class="alarm-time">04:00</div>
+      <div class="alarm-text"><strong>Wake up.</strong> Set two alarms the night before.</div>
+    </div>
+    <div class="alarm-row">
+      <div class="alarm-time">04:20</div>
+      <div class="alarm-text"><strong>Pre-booked taxi departs</strong> from Sveavägen apartment. 30–35 min drive to Arlanda with zero traffic at this hour.</div>
+    </div>
+    <div class="alarm-row highlight">
+      <div class="alarm-time">04:55</div>
+      <div class="alarm-text"><strong>Arrive Arlanda.</strong> Check in, security, find gate. ~70 min to departure — comfortable.</div>
+    </div>
+    <div class="alarm-row highlight">
+      <div class="alarm-time">06:05</div>
+      <div class="alarm-text"><strong>FR4626 departs.</strong> ✈ Kraków 08:00.</div>
+    </div>
+  </div>
+
+  <div style="height:1.5rem"></div>
+  <div class="card">
+    <h4 style="font-family:'Jost',sans-serif;font-weight:600;font-size:0.9rem;margin-bottom:0.8rem;">How to book your taxi — do this Sunday evening</h4>
+    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+      <p style="font-size:0.87rem;"><strong style="color:var(--ink)">Uber</strong> — open app → Schedule → set pickup at Sveavägen for 04:20 on March 24. Easiest, most reliable.</p>
+      <p style="font-size:0.87rem;"><strong style="color:var(--ink)">Cabonline</strong> — cabonline.com or +46 8 120 000 00. Sweden's largest taxi network.</p>
+      <p style="font-size:0.87rem;"><strong style="color:var(--ink)">Taxi Stockholm</strong> — taxistockholm.se or +46 8 150 000. Also reliable at odd hours.</p>
+      <p style="font-size:0.87rem;color:var(--ink-soft);">Cost: ~500–600 SEK total for the car (~185–220 PLN). Split between two, comparable to two Arlanda Express tickets.</p>
+    </div>
+  </div>
+
+  <div style="height:1rem"></div>
+  <h3 style="font-size:1.05rem;font-family:'Jost',sans-serif;font-weight:600;margin-bottom:1rem;">Alternative — Arlanda Express (tighter timing)</h3>
+  <div class="transport-option">
+    <div class="transport-header">
+      <h4>Option B — Taxi to T-Centralen + 04:35 Arlanda Express</h4>
+    </div>
+    <div class="transport-body">
+      <ul class="transport-steps">
+        <li><div class="step-circle">1</div><div>Wake up <strong>04:15</strong>. Uber/taxi to T-Centralen — ~10 min, ~150 SEK.</div></li>
+        <li><div class="step-circle">2</div><div>Catch <strong>04:35 Arlanda Express</strong> from Stockholm Central. Runs daily, every day of the week.</div></li>
+        <li><div class="step-circle">3</div><div>Arrive Arlanda <strong>04:53</strong>. ~1h10 before departure.</div></li>
+      </ul>
+      <div class="transport-meta">Cost: ~150 SEK Uber + 340 SEK/person Arlanda Express. Total for two: ~830 SEK. Timing is tight — don't miss the cab.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 6 — FOOD & COFFEE
+════════════════════════════════════════════════ -->
+<section id="food">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-header-text">
+      <div class="label">Food & drink guide</div>
+      <h2>Where to eat, drink & have fika</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <h3 style="font-size:1rem;font-family:'Jost',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;">Specialty Coffee</h3>
+  <div class="food-grid" style="margin-bottom:2.5rem;">
+    <div class="food-card featured">
+      <div>
+        <div class="food-name">Drop Coffee Roasters ★ Top pick</div>
+        <div class="food-location">Södermalm · Wollmar Yxkullsgatan 10 · Mariatorget metro</div>
+        <div class="food-desc">Stockholm's most acclaimed third-wave café. Joanna Alm (2× Swedish Roasting Champion) roasts in-house. Light-to-medium, terroir-forward single origins. Cozy multi-room space — some rooms laptop-free. Order a Kalita pour-over and a cardamom bun. Also stocks their iconic rectangular boxed beans to take home.</div>
+        <div class="badge-row"><span class="badge badge-gold">Own roastery</span><span class="badge badge-green">Award-winning</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Café Pascal</div>
+      <div class="food-location">Vasastan · Norrtullsgatan 4 · 10 min walk from apartment</div>
+      <div class="food-desc">Your neighbourhood café. Hand-brewed V60 and own-roasted beans. Beloved by locals, very busy on weekends. Try the pistachio croissant.</div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Johan & Nyström</div>
+      <div class="food-location">Södermalm · Swedenborgsgatan 7</div>
+      <div class="food-desc">Original Scandinavian specialty pioneer. Coffee and tea merchant with walls stacked floor-to-ceiling with beans. Industrial-chic space. Very Stockholm.</div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Snickarbacken 7</div>
+      <div class="food-location">Vasastan/Östermalm border · hidden alley</div>
+      <div class="food-desc">Café, art gallery, and boutique inside 19th-century horse stables on a cobblestone lane. Coffee from Stockholm Roast. Feels like drinking coffee in a beautiful old church.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1rem;font-family:'Jost',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;">Vegan & Vegetarian Restaurants</h3>
+  <div class="food-grid" style="margin-bottom:2.5rem;">
+    <div class="food-card featured">
+      <div>
+        <div class="food-name">Hermans ★ Don't miss</div>
+        <div class="food-location">Södermalm · Fjällgatan 23B · views over Stockholm</div>
+        <div class="food-desc">A Stockholm institution since the 1990s. All-you-can-eat vegan buffet at lunch and dinner — 145 SEK per person including coffee. Global flavours: Lebanese hummus, Japanese curry, fresh salads, hot mains. Terrace view of the Old Town and water is extraordinary. Very popular with locals. Best weekday lunch to avoid queues.</div>
+        <div class="badge-row"><span class="badge badge-green">100% vegan · 145 SEK all-in</span></div>
+      </div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Farang</div>
+      <div class="food-location">Vasastan · Tulegatan 7 · 15 min walk from apartment</div>
+      <div class="food-desc">SE Asian tasting menus, full vegetarian option available. One of Stockholm's finest restaurants. Book at farang.se — well in advance.</div>
+      <div class="badge-row"><span class="badge badge-red">Reserve in advance</span></div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Lao Wai</div>
+      <div class="food-location">Vasastan · Luntmakargatan 74 · 10 min walk</div>
+      <div class="food-desc">All-vegan Sichuan and Taiwanese family-style dishes. Menu changes based on what's fresh. 30-year institution. Phone reservation only: +46 8 673 78 00.</div>
+      <div class="badge-row"><span class="badge badge-green">100% vegan</span><span class="badge badge-red">Phone booking only</span></div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Bacchi Syre</div>
+      <div class="food-location">Gamla Stan · Järntorget · Old Town</div>
+      <div class="food-desc">Three floors of plant-based restaurant, bars, café, art gallery and event space in a beautiful Old Town building. Mostly plant-based, some egg/dairy. Perfect for a final dinner.</div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Kafé Plattan</div>
+      <div class="food-location">Central Stockholm · casual</div>
+      <div class="food-desc">Relaxed vegan café, all dishes made in-house. Great banh mi, lentil soups, vegan cinnamon buns. Good for a quick lunch.</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:1rem;font-family:'Jost',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem;">Great All-Round Restaurants</h3>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-name">Café Nizza</div>
+      <div class="food-location">Södermalm · French-Italian bistro</div>
+      <div class="food-desc">Relaxed neighbourhood gem. Great cacio e pepe, good vegetarian options, welcoming locals atmosphere. Ideal for arrival evening.</div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Woodstockholm</div>
+      <div class="food-location">Södermalm · seasonal creative</div>
+      <div class="food-desc">Innovative seasonal menu by furniture-designer owners. Miso eggplant, kimchi radishes. Excellent vegetarian dishes. Strong vibe.</div>
+    </div>
+    <div class="food-card">
+      <div class="food-name">Östermalmshallen</div>
+      <div class="food-location">Östermalm · 1888 food market hall</div>
+      <div class="food-desc">Stockholm's beautiful Victorian food hall. Gravlax, Swedish cheeses, pickled herring, fresh bread. Great for a market lunch or ingredients for the apartment.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 7 — HIDDEN GEMS
+════════════════════════════════════════════════ -->
+<section id="gems">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <div class="section-header-text">
+      <div class="label">Things most tourists miss</div>
+      <h2>Hidden gems & local favourites</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="gem-item">
+    <div class="gem-number">1</div>
+    <div class="gem-content">
+      <h4>Stadsbiblioteket — Stockholm Public Library</h4>
+      <div class="gem-where">5 min walk from your apartment · Sveavägen</div>
+      <p>Gunnar Asplund's 1928 masterpiece is one of the great architectural spaces in Scandinavia — a perfect cylinder rising from a cubic base, the rotunda reading room lined floor-to-ceiling with books on three levels. Free entry. Almost no tourists. There's a spot under the central dome where your voice echoes back at you. Visit on your first afternoon, right from the apartment.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">2</div>
+    <div class="gem-content">
+      <h4>The T-bana (metro) art stations</h4>
+      <div class="gem-where">Free with SL pass · Blue and Red lines</div>
+      <p>The Stockholm metro has been a public art project since the 1950s — 90+ stations decorated by 150+ artists. It is genuinely unlike any transit system in the world. Must-see stations: <strong>Kungsträdgården</strong> (painted cave with embedded fossils and frescoes), <strong>Rådhuset</strong> (exposed red rock, feels like being inside a cliff), <strong>Stadion</strong> (vaulted rainbow mosaics), <strong>T-Centralen</strong> (graphic blue flower pattern covering every surface). Ride the blue line end-to-end for the full experience.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">3</div>
+    <div class="gem-content">
+      <h4>Monteliusvägen — the view Stockholm forgot to advertise</h4>
+      <div class="gem-where">Södermalm cliff path · Mariatorget metro</div>
+      <p>A narrow pedestrian path running along the edge of the Södermalm cliff. The panorama of City Hall, Old Town, Riddarfjärden and the surrounding islands is the most beautiful free view in the city. Locals walk their dogs here. No tour buses, no selfie sticks. Walk the full path — 20–30 minutes end to end. Best in winter light when the buildings have a grey-gold quality.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">4</div>
+    <div class="gem-content">
+      <h4>Snickarbacken 7 — café in hidden stables</h4>
+      <div class="gem-where">Vasastan/Östermalm border · tiny cobblestone alley</div>
+      <p>On a small street few visitors find, a café, art gallery, and clothing boutique occupy 19th-century horse stables. High vaulted ceilings, exposed brick, coffee from Stockholm Roast, a Swedish breakfast menu including boiled egg with caviar. It feels like drinking coffee in a church. Paired with a V60, it's one of the best spots in the city.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">5</div>
+    <div class="gem-content">
+      <h4>Moderna Museet — free on Fridays 6–8pm</h4>
+      <div class="gem-where">Skeppsholmen island · near Gamla Stan</div>
+      <p>World-class modern and contemporary art — Picasso, Dalí, Warhol, Matisse, and major Scandinavian artists. The building by Rafael Moneo is itself a work of architecture. Friday evenings it's free, quiet, and the island is gorgeous at dusk. Not relevant on this trip (your visit is Sat–Mon) but worth knowing for future.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">6</div>
+    <div class="gem-content">
+      <h4>Walk across every bridge — Stockholm on foot</h4>
+      <div class="gem-where">Free · your apartment to Gamla Stan is all walkable</div>
+      <p>Stockholm is built on 14 islands connected by bridges. The walk from Sveavägen → down through Norrmalm → Gamla Stan → across to Södermalm is entirely on foot over water. Each bridge crossing gives a completely different view of the city. The total walk takes about 40–45 minutes and is one of the most beautiful things you can do in any European city. Do it at golden hour if possible.</p>
+    </div>
+  </div>
+
+  <div class="gem-item">
+    <div class="gem-number">7</div>
+    <div class="gem-content">
+      <h4>Hagaparken — the royal park nobody talks about</h4>
+      <div class="gem-where">Solna border · Bus 515 from Odenplan · your friend meetup spot</div>
+      <p>A sprawling royal park on the Stockholm/Solna border with beautiful 18th-century follies — the copper-roofed Haga Pavilion, the Chinese Pavilion, Gustavian ruins. Very popular with joggers and locals. Completely off the tourist circuit. In early spring the park is quiet and faintly melancholy in a beautiful way. Perfect midpoint to meet your friend from Solna.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 8 — PRACTICAL TIPS
+════════════════════════════════════════════════ -->
+<section id="tips">
+<div class="container">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <div class="section-header-text">
+      <div class="label">Things to know</div>
+      <h2>Practical tips</h2>
+    </div>
+  </div>
+  <div class="gold-line"></div>
+
+  <div class="tips-grid">
+    <div class="tip-item">
+      <div class="tip-icon">🎫</div>
+      <div>
+        <h4>SL 72h travel pass</h4>
+        <p>330 SEK/person. Covers all metro, bus, tram, and some ferries. Buy at any Pressbyrån kiosk or the SL app. Worth every krona if you use transport daily — and you will.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">💳</div>
+      <div>
+        <h4>Stockholm is cashless</h4>
+        <p>Almost nowhere accepts cash, including small cafés and kiosks. Always have a Visa or Mastercard. Apple Pay and Google Pay work everywhere. Pay in SEK to avoid dynamic currency conversion charges.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🧥</div>
+      <div>
+        <h4>Pack for late winter</h4>
+        <p>2–3°C with possible ice or light snow. Thermal base layers, a warm coat, hat, gloves and scarf are non-negotiable. Waterproof shoes essential — streets may be icy or slushy. Daylight: 06:00–18:00.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">☕</div>
+      <div>
+        <h4>Fika is a lifestyle</h4>
+        <p>Fika is not just a coffee break — it's a deliberate pause in the day, taken slowly with someone you like. Sit down, order a coffee and a kanelbulle (cinnamon bun), and don't rush. It's about the pause itself.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">📋</div>
+      <div>
+        <h4>Book these in advance now</h4>
+        <p><strong>Vasa Museum</strong> — vasamuseet.se, especially for Sunday. <strong>Farang</strong> — farang.se, fills up quickly. <strong>Lao Wai</strong> — phone only: +46 8 673 78 00. <strong>Taxi for 04:20 March 24</strong> — Uber scheduled or Cabonline.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🕰️</div>
+      <div>
+        <h4>Swedish eating times</h4>
+        <p>Lunch is 11:30am–2pm, dinner from 6pm. Restaurants fill up fast, especially on Sunday evenings. Always book ahead for anything beyond casual cafés and market halls.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">💰</div>
+      <div>
+        <h4>Currency & costs</h4>
+        <p>Swedish Krona (SEK). 1 PLN ≈ 2.7 SEK. A coffee: ~55–70 SEK. Restaurant meal: ~200–350 SEK/person without drinks. Stockholm is expensive — budget ~800–1,200 SEK/day per person excluding the apartment.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🚖</div>
+      <div>
+        <h4>Taxis — use trusted apps only</h4>
+        <p>Use Uber, Cabonline (cabonline.com), or Taxi Stockholm (+46 8 150 000). Avoid unmarked taxis — overcharging does happen at train stations and airports. Always confirm the price before getting in.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">📍</div>
+      <div>
+        <h4>Your apartment location</h4>
+        <p>Sveavägen, Vasastan. Safe, residential, local. Rådmansgatan metro: 3 min walk. ICA supermarket: 2 min. Café Pascal (specialty coffee): 10 min. Farang & Lao Wai: 10–15 min.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-icon">🌡️</div>
+      <div>
+        <h4>Weather forecast</h4>
+        <p>Sat 21: 2°C / -2°C, cold and cloudy. Sun 22: 3°C / -1°C, possible sunny spells. Mon 23: 3°C / -2°C, overcast. Daylight ~12 hours. Up to 7 hours of sunshine possible on good days.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:3rem"></div>
+
+  <!-- Key contacts box -->
+  <div style="border:1px solid var(--border);padding:1.5rem;background:white;">
+    <h3 style="font-size:1rem;font-family:'Jost',sans-serif;font-weight:600;margin-bottom:1.25rem;">Key numbers & links</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Emergency</span><br><strong>112</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Police non-emergency</span><br><strong>114 14</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Taxi Stockholm</span><br><strong>+46 8 150 000</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Cabonline</span><br><strong>+46 8 120 000 00</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Lao Wai (book by phone)</span><br><strong>+46 8 673 78 00</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Arlanda Express info</span><br><strong>arlandaexpress.com</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Vasa Museum tickets</span><br><strong>vasamuseet.se</strong></div>
+      <div style="font-size:0.85rem;"><span style="color:var(--ink-soft);">Farang reservations</span><br><strong>farang.se</strong></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Stockholm Trip Plan</strong> — March 21–24, 2026</p>
+  <p style="margin-top:0.5rem;">Stay Inn Apartment · Sveavägen · Vasastan &nbsp;·&nbsp; Flights FR4636 / FR4626</p>
+  <p style="margin-top:1rem; font-size:0.72rem; opacity:0.5;">Have a wonderful trip. Ha det bra! ✈</p>
+</footer>
+
+</body>
+</html>
