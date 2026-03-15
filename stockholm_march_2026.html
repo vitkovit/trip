@@ -199,8 +199,8 @@
 
   /* ─── MAP SECTION ─── */
   .map-section { padding: 4rem 0; border-bottom: 1px solid var(--border); background: var(--cream-dark); }
-  .map-embed-wrap { position: relative; margin-bottom: 1rem; border: 1px solid var(--border); overflow: hidden; }
-  .map-embed-wrap iframe { display: block; width: 100%; height: 520px; border: none; }
+  .map-embed-wrap { position: relative; margin-bottom: 1rem; border: 1px solid var(--border); overflow: hidden; width: 100%; aspect-ratio: 640 / 480; }
+  .map-embed-wrap iframe { display: block; width: 100%; height: 100%; border: none; }
   .map-open-btn { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; color: var(--blue); border: 1px solid rgba(43,74,107,0.25); padding: 0.5rem 1rem; background: var(--blue-light); transition: background 0.15s; margin-bottom: 2rem; }
   .map-open-btn:hover { background: #D4E3F0; }
   .map-open-btn::before { content: '↗'; }
@@ -306,13 +306,7 @@
 
   <!-- Embedded My Maps with all pinned locations -->
   <div class="map-embed-wrap">
-    <iframe
-      src="https://www.google.com/maps/d/embed?mid=1N7uH3WEpkHrJfjo0vomsbENMwmthOH0"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Stockholm — all trip locations">
-    </iframe>
+    <iframe src="https://www.google.com/maps/d/embed?mid=1N7uH3WEpkHrJfjo0vomsbENMwmthOH0&ehbc=2E312F" width="640" height="480"></iframe>
   </div>
   <a class="map-open-btn" href="https://www.google.com/maps/d/u/0/viewer?mid=1N7uH3WEpkHrJfjo0vomsbENMwmthOH0" target="_blank" rel="noopener">Open full map in Google Maps</a>
 
